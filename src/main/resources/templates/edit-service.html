@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul>
+       <li>
+          <a th:href="@{/}">Back</a>
+        </li>
+   </ul>
+
+	<form th:action="@{/services/{id} (id=${serviceTravel.id})}" th:object="${serviceTravel}" method="POST">
+			
+		<label>Services Name</label> 
+		<input type="text" name="name"
+			th:field="*{name}" 
+			placeholder="Enter Services Name" />
+				
+		<label>Department</label> 
+		<input type="text" name="deparment"
+			th:field="*{deparment}" 
+			placeholder="Enter Deparment" />
+				
+		<label>Province</label> 
+		<input type="text" name="province"
+			th:field="*{province}" 
+			placeholder="Enter Province" />
+				
+		<label>Address</label> 
+		<input type="text" name="address"
+			th:field="*{address}" 
+			placeholder="Enter Address" />
+				
+		<label>Type of Service</label>
+		<input type="text" name="address"
+			th:field="*{serviceType.name}" 
+			readonly="readonly"/>
+			
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>

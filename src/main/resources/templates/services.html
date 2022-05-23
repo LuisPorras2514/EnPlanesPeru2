@@ -28,6 +28,12 @@
 				<td th:text="${serviceTravel.address}"></td>
 				<td th:text="${serviceTravel.serviceType.name}"></td>
 				<td th:text="${serviceTravel.star}"></td>
+				<td>
+					<a th:href="@{/services/edit/{id}(id=${serviceTravel.id})}"
+					class="btn btn-primary">Update</a> 
+					<a th:href="@{/services/{id}(id=${serviceTravel.id})}"
+					class="btn btn-danger">Delete</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
