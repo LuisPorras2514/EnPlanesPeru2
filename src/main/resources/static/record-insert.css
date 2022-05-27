@@ -1,0 +1,265 @@
+:root{
+
+    --width: 300px;
+    --padding: 10px;
+    --bgcolor: rgb(52,52,52);
+    --hovercolor: rgb(255, 255, 255);
+    --width-collapsed: 50px;
+
+}
+
+#top-bar{
+    width: 100%;
+    Height: 100px;
+    background-color: #CD332B;
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items: center;
+    transition: 1s;
+}
+.historial-pagos{
+    background-color: #CD332B;
+    font-family: Faustina;
+    width: 27rem;
+    color:#FFF;
+    padding: 0.5rem;
+}
+.durante{
+    font-family: Faustina;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0em;
+    text-align: left;
+
+
+}
+.dtpago{
+    font-family: Faustina;
+ 
+}
+
+.card-body-dos{
+    background-color: #E0E0E0;
+    
+
+}
+
+body{
+
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    margin-left: var(--width-collapsed);
+    transition: 1s;
+} 
+
+
+.body-expanded{
+margin-left: var(--width);
+transition: 1s;
+}
+
+#main-container{
+    color:rgb(0, 0, 0);
+    padding-left: 4rem;
+    padding-right: 4rem;
+    transition: 1s;
+}
+
+#sidemenu{
+    background-color: #FFF0EE;
+    color: rgb(188, 0, 0);
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: 1s;
+}
+#sidemenu a{
+    color: rgb(188, 0, 0);
+    text-decoration: none;
+    transition: 1s;
+}
+/*HEADER*/
+#sidemenu #header{
+    box-sizing: border-box;
+    border-bottom: solid 1px var(--hovercolor);
+    transition: 1s;
+}
+#sidemenu #header #title{
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: 1s;
+}
+
+#sidemenu #header #title, #sidemenu #header #menu-btn{
+    vertical-align: middle;
+    transition: 1s;
+}
+#sidemenu #header #menu-btn{
+    display: inline-block;
+    transition: 1s;
+}
+#sidemenu #header #menu-btn{
+    cursor: pointer;
+    padding: 10px;
+    width: var(--width-collapsed);
+    box-sizing: border-box;
+    transition: 1s;
+}
+#sidemenu #header #menu-btn:hover{
+    background-color: var(--hovercolor);
+    transition: 1s;
+}
+#sidemenu #header #menu-btn .btn-hamburger{
+    background-color: #FFF;
+    width: 100%;
+    height: 2px;
+    margin: 5px 0;
+    transition: 1s;
+}
+/*PROFILE*/
+#sidemenu #profile{
+    border-bottom: solid 1px var(--hovercolor);
+    padding: var(--padding) 0;
+    text-align: center;
+    transition: 1s;
+    
+}
+#sidemenu #profile #photo{
+    box-sizing: border-box;
+    padding: var(--padding);
+    margin: 0 auto;
+    transition: 1s;
+}
+#sidemenu #profile #bar-title{
+    box-sizing: border-box;
+    padding: var(--padding);
+    margin-left: 5rem;
+    transition: 1s;
+}
+#sidemenu #profile #photo img{
+    border-radius: 50%;
+    width: 100%; /*Imagen*/
+    transition: 1s;
+}
+#sidemenu #profile #photo, #sidemenu #profile #name{
+    font-size: 20px;
+    padding: var(--padding) 0;
+    overflow: hidden;
+    transition: 1s;
+}
+#sidemenu #menu-items{
+    overflow: hidden;
+    transition: 1s;
+}
+#sidemenu #menu-items .item{
+    width: var(--width);
+    transition: 1s;
+}
+#sidemenu #menu-items .item .icon{
+    display: inline-block;
+    transition: 1s;
+}
+
+#sidemenu #menu-items .item .icon,
+#sidemenu #menu-items .item .title{
+    font-size: 14px;
+    vertical-align: middle;
+    overflow: hidden;
+    display: inline-block;
+    transition: 1s;
+
+}
+#sidemenu #menu-items .item a{
+    display: block;
+    transition: 1s;
+}
+#sidemenu #menu-items .item a:hover{
+background-color: var(--hovercolor);
+transition: 1s;
+}
+
+#sidemenu #menu-items .item .icon{
+    box-sizing: border-box;
+    padding: var(--padding);
+    width: var(--width-collapsed);
+    transition: 1s;
+}
+#sidemenu #menu-items .item .icon img{
+    width: 10%; /*Rectangulo*/
+    transition: 1s;
+}
+#sidemenu #menu-items .item .title{
+    padding: var(--padding) 0;
+    transition: 1s;
+}
+#sidemenu #menu-items .item.separator{
+    height: 1px;
+    border-bottom: solid 1px var(--hovercolor);
+    margin: 15px 0;
+    transition: 1s;
+}
+.menu-expanded{
+    width: var(--width);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: 1s;
+}
+.menu-expanded #header #title{
+    display: inline-block;
+    width: calc(100%-50px);
+    margin-right: -5px;
+    padding: var(--padding);
+    transition: 1s;
+
+}
+.menu-expanded #header #title span{
+    width: calc(var(--width) - var(--width-collapsed) - 5px);
+    overflow: hidden;
+    display: inline-block;
+    transition: 1s;
+
+}
+.menu-expanded #profile #photo{
+    width: 200px;
+    transition: 1s;
+
+}
+.menu-expanded #profile #name{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    transition: 1s;
+}
+
+.menu-collapsed{
+    width: var(--width-collapsed);
+    transition: 1s;
+}
+
+.menu-collapsed #header #title{
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transition: 1s;
+}
+.menu-collapsed #profile #name{
+    display: none;
+    transition: 1s;
+}
+.menu-collapsed .item{
+    width: 100px;
+    transition: 1s;
+}
+#btnEliminar{
+	transition:0.5s;
+}
+#btnEliminar:hover{
+	transform: scale(1.2);
+	transition:0.5s;
+}

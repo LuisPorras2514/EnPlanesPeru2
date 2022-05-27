@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+		<div class = "card">
+		<div class = "card-header"> Edit Services </div>
+			<div class = "card-body">
+				
+				<form th:action="@{/services/{id} (id=${serviceTravel.id})}" th:object="${serviceTravel}" method="POST">
+					
+					<div class="mb-3">	
+						<label for="serviceName" class="form-label">Services Name</label> 
+						<input id="serviceName"
+							class="form-control" 
+							type="text" name="name"
+							th:field="*{name}" 
+							placeholder="Enter Services Name" />
+					</div>
+					
+					<div class="mb-3">	
+						<label for="deparment" class="form-label">Department</label> 
+						<input id="deparment"
+							class="form-control"
+							type="text" name="deparment"
+							th:field="*{deparment}" 
+							placeholder="Enter Deparment" />
+					</div>
+					
+					<div class="mb-3">	
+						<label for="province" class="form-label">Province</label> 
+						<input id="province"
+							class="form-control"
+							type="text" name="province"
+							th:field="*{province}" 
+							placeholder="Enter Province" />
+					</div>
+					
+					<div class="mb-3">		
+						<label for="address" class="form-label">Address</label> 
+						<input  id="address"
+							class="form-control"
+							type="text" name="address"
+							th:field="*{address}" 
+							placeholder="Enter Address" />
+					</div>
+					
+					<div class="mb-3">	
+						<label for="serviceType" class="form-label">Type of Service</label>
+						<input type="text" name="address"
+							class="form-select"
+							th:field="*{serviceType.name}" 
+							readonly="readonly"/>
+					</div>
+						
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<a th:href="@{/}" class="btn btn-danger" >Back</a>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

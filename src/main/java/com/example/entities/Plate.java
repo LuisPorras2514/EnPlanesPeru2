@@ -18,6 +18,7 @@ public class Plate {
   
   @Column(name="plate_name", nullable = false)
   private String name;
+  	
   @Column(name="plate_price", nullable = false)
   private double price;
   

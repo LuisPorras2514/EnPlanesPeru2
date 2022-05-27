@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+	<th:block th:include="fragments/navbar"></th:block>
+	
+	<div class="container">
+		<h1> Services </h1>
+		
+ 		<a th:href="@{/services/insert}" class="btn btn-primary" >Add Services</a>
+ 		
+		<table class="table table-hover table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Name Services</th>
+					<th>Department</th>
+					<th>Province</th>
+					<th>Address</th>
+					<th>Type Service</th>
+					<th>Star</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="serviceTravel:${services}">
+					<td th:text="${serviceTravel.name}"></td>
+					<td th:text="${serviceTravel.deparment}"></td>
+					<td th:text="${serviceTravel.province}"></td>
+					<td th:text="${serviceTravel.address}"></td>
+					<td th:text="${serviceTravel.serviceType.name}"></td>
+					<td th:text="${serviceTravel.star}"></td>
+					<td>
+						<a th:href="@{/menus/list/{id}(id=${serviceTravel.id})}"
+						class="btn btn-primary">View Details</a> 
+						<a th:href="@{/services/edit/{id}(id=${serviceTravel.id})}"
+						class="btn btn-primary">Update</a> 
+						<a th:href="@{/services/{id}(id=${serviceTravel.id})}"
+						class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

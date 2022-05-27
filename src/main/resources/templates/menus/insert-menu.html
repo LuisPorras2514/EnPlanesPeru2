@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+		<div class = "card">
+			<div class = "card-header"> New Menu </div>
+			<div class = "card-body">
+				<form th:action="@{/menus}" 
+					  th:object="${menu}" method="POST">
+					<div class="mb-3">
+						<label for="MenuName" class="form-label">Menu Name</label> 
+						<input id="MenuName"
+							class="form-control"
+							type="text" name="name"
+							th:field="*{name}" 
+							placeholder="Enter Services Name" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="MenuName" class="form-label">Type of Menu</label>
+							<select id="serviceType"
+								class="form-select"
+								th:field="${menu.menuType}"
+								name="menuTypes">
+							<option th:each="menuType:${menuTypes}" th:value="${menuType.id}"
+								th:text="${menuType.name}" />
+						</select>
+					</div>
+					<a th:href="@{/}" class="btn btn-danger" >Back</a>
+					<button type="submit" class="btn btn-primary">Submit Menu</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

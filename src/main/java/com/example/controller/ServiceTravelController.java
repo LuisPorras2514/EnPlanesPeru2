@@ -30,18 +30,18 @@ public class ServiceTravelController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("services", serviceTravelService.getAllServices());
-		return "services";
+		return "services/services";
 	}
 
-	@GetMapping("/services/new")
-	public String createStudentForm(Model model) {
+	@GetMapping("/services/insert")
+	public String createServiceForm(Model model) {
 		ServiceTravel serviceTravel = new ServiceTravel();
 		serviceTypes = serviceTypeService.getAllServiceTypes();
 
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
 
-		return "insert-service";
+		return "services/insert-service";
 	}
 
 	@PostMapping("/services")
@@ -58,23 +58,23 @@ public class ServiceTravelController {
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
 
-		return "edit-service";
+		return "services/edit-service";
 	}
 
 	@PostMapping("/services/{id}")
-	public String updateServicesTravel(@PathVariable Long id, @ModelAttribute("student") ServiceTravel serviceTravel,
+	public String updateServicesTravel(@PathVariable Long id, @ModelAttribute("serviceTravel") ServiceTravel serviceTravel,
 			Model model) {
 
-		ServiceTravel existentserviceTravel = serviceTravelService.getServiceTravelById(id);
+		ServiceTravel existentServiceTravel = serviceTravelService.getServiceTravelById(id);
 
-		existentserviceTravel.setId(id);
-		existentserviceTravel.setName(serviceTravel.getName());
-		existentserviceTravel.setDeparment(serviceTravel.getDeparment());
-		existentserviceTravel.setProvince(serviceTravel.getProvince());
-		existentserviceTravel.setAddress(serviceTravel.getAddress());
-		existentserviceTravel.setStar(serviceTravel.getStar());
+		existentServiceTravel.setId(id);
+		existentServiceTravel.setName(serviceTravel.getName());
+		existentServiceTravel.setDeparment(serviceTravel.getDeparment());
+		existentServiceTravel.setProvince(serviceTravel.getProvince());
+		existentServiceTravel.setAddress(serviceTravel.getAddress());
+		existentServiceTravel.setStar(serviceTravel.getStar());
 
-		serviceTravelService.updateServiceTravel(existentserviceTravel);
+		serviceTravelService.updateServiceTravel(existentServiceTravel);
 
 		return "redirect:/";
 	}
