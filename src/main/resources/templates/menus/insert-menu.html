@@ -3,12 +3,12 @@
 <th:block th:include="fragments/head"></th:block>
 <link rel="stylesheet" th:href="@{/record.css}">
 <body>
-	<th:block th:include="fragments/navbar"></th:block>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
 	<div class="container">
 		<div class = "card">
 			<div class = "card-header"> New Menu </div>
 			<div class = "card-body">
-				<form th:action="@{/menus}" 
+				<form th:action="@{/menus/save}" 
 					  th:object="${menu}" method="POST">
 					<div class="mb-3">
 						<label for="MenuName" class="form-label">Menu Name</label> 
@@ -20,8 +20,8 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="MenuName" class="form-label">Type of Menu</label>
-							<select id="serviceType"
+						<label for="MenuType" class="form-label">Type of Menu</label>
+							<select id="MenuType"
 								class="form-select"
 								th:field="${menu.menuType}"
 								name="menuTypes">
@@ -29,7 +29,7 @@
 								th:text="${menuType.name}" />
 						</select>
 					</div>
-					<a th:href="@{/}" class="btn btn-danger" >Back</a>
+					<a th:href="@{/menus/back}" class="btn btn-danger">Back</a>
 					<button type="submit" class="btn btn-primary">Submit Menu</button>
 				</form>
 			</div>

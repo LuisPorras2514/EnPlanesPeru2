@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
 <body>
-
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	
+	<div class="container">
+		<div class = "card">
+		<div class = "card-header"> Edit Menu </div>
+			<div class = "card-body">
+				
+				<form th:action="@{/menus/menus-edit/{id}(id=${menu.id})}" th:object="${menu}" method="POST">
+					
+					<div class="mb-3">	
+						<label for="menuName" class="form-label">Services Name</label> 
+						<input id="menuName"
+							class="form-control" 
+							type="text" name="name"
+							th:field="*{name}" 
+							placeholder="Enter Menu Name" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="MenuType" class="form-label">Type of Menu</label>
+							<select id="MenuType"
+								class="form-select"
+								th:field="${menu.menuType}"
+								name="menuTypes">
+							<option th:each="menuType:${menuTypes}" th:value="${menuType.id}"
+								th:text="${menuType.name}" />
+						</select>
+					</div>
+						
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<a th:href="@{/menus/back}" class="btn btn-danger" >Back</a>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
 </body>
 </html>

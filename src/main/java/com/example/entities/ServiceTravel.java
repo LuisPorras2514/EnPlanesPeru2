@@ -1,6 +1,5 @@
 package com.example.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +26,7 @@ public class ServiceTravel {
   @Column(name="deparment", nullable = false)
   private String deparment;
   
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name="service_type_id", nullable = false)
   private ServiceType serviceType;
 

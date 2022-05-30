@@ -1,11 +1,9 @@
 :root{
-
     --width: 300px;
     --padding: 10px;
     --bgcolor: rgb(52,52,52);
     --hovercolor: rgb(255, 255, 255);
     --width-collapsed: 50px;
-
 }
 
 #top-bar{
@@ -18,6 +16,7 @@
     align-items: center;
     transition: 1s;
 }
+
 .historial-pagos{
     background-color: #CD332B;
     font-family: Faustina;
@@ -25,6 +24,7 @@
     color:#FFF;
     padding: 0.5rem;
 }
+
 .durante{
     font-family: Faustina;
     font-size: 25px;
@@ -32,9 +32,8 @@
     line-height: 32px;
     letter-spacing: 0em;
     text-align: left;
-
-
 }
+
 .dtpago{
     font-family: Faustina;
  
@@ -42,12 +41,9 @@
 
 .card-body-dos{
     background-color: #E0E0E0;
-    
-
 }
 
 body{
-
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -55,12 +51,11 @@ body{
     margin: 0;
     margin-left: var(--width-collapsed);
     transition: 1s;
-} 
-
+}
 
 .body-expanded{
-margin-left: var(--width);
-transition: 1s;
+	margin-left: var(--width);
+	transition: 1s;
 }
 
 #main-container{
@@ -81,6 +76,7 @@ transition: 1s;
     color: rgb(188, 0, 0);
     text-decoration: none;
 }
+
 /*HEADER*/
 #sidemenu #header{
     box-sizing: border-box;
@@ -112,6 +108,7 @@ transition: 1s;
     height: 2px;
     margin: 5px 0;
 }
+
 /*PROFILE*/
 #sidemenu #profile{
     border-bottom: solid 1px var(--hovercolor);
@@ -192,16 +189,18 @@ background-color: var(--hovercolor);
     padding: var(--padding);
 
 }
+
 .menu-expanded #header #title span{
     width: calc(var(--width) - var(--width-collapsed) - 5px);
     overflow: hidden;
     display: inline-block;
 
 }
+
 .menu-expanded #profile #photo{
     width: 200px;
-
 }
+
 .menu-expanded #profile #name{
     width: 100%;
     display:flex;
@@ -219,9 +218,11 @@ background-color: var(--hovercolor);
     padding: 0;
     margin: 0;
 }
+
 .menu-collapsed #profile #name{
     display: none;
 }
+
 .menu-collapsed .item{
     width: 100px;
     transition: 1s;

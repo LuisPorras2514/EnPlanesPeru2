@@ -3,14 +3,13 @@
 <th:block th:include="fragments/head"></th:block>
 <link rel="stylesheet" th:href="@{/record.css}">
 <body>
-	<th:block th:include="fragments/navbar"></th:block>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
 	
 	<div class="container">
-		
 		<div class = "card">
 			<div class = "card-header"> New Services </div>
 			<div class = "card-body">
-				<form th:action="@{/services}" th:object="${serviceTravel}" method="POST">
+				<form th:action="@{/services/save}" th:object="${serviceTravel}" method="POST">
 					
 					<div class="mb-3">
 						<label for="serviceName" class="form-label">Services Name</label> 
@@ -60,7 +59,7 @@
 						</select>
 					</div>
 					
-					<a th:href="@{/}" class="btn btn-danger" >Back</a>
+					<a th:href="@{/services/list}" class="btn btn-danger" >Back</a>
 					<button type="submit" class="btn btn-primary">Submit Service</button>
 					
 				</form>
