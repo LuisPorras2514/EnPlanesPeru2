@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	
+	<div class="container">
+		<div class = "card">
+			<div class = "card-header"> New Plate </div>
+			<div class = "card-body">
+				<form th:action="@{/plates/plates-edit/{id}(id=${plate.id})}" 
+					  th:object="${plate}" method="POST">
+					
+					<div class="mb-3">
+						<label for="PlateName" class="form-label">Plate Name</label> 
+						<input id="PlateName"
+							class="form-control"
+							type="text" name="name"
+							th:field="*{name}" 
+							placeholder="Enter Plate Name" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="PlatePrice" class="form-label">Plate Price</label> 
+						<input id="PlatePrice"
+							class="form-control"
+							type="text" name="price"
+							th:field="*{price}" 
+							placeholder="Enter Plate Price" />
+					</div>
+					
+					<a th:href="@{/plates/back}" class="btn btn-danger">Back</a>
+					<button type="submit" class="btn btn-primary">Update Plate</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

@@ -34,9 +34,9 @@
 						<td th:switch="${serviceTravel.serviceType.name}">
 							<a th:case='Alimentación'th:href="@{/menus/list/{id}(id=${serviceTravel.id})}"
 							class="btn btn-primary">View Menus</a>
-							<a th:case='Alojamiento' href="#"
+							<a th:case='Alojamiento' href="#" 
 							class="btn btn-primary">View Rooms</a>
-							<a th:case='Movilidad' href="#"
+							<a th:case='Movilidad' th:href="@{/cars/list/{id}(id=${serviceTravel.id})}"
 							class="btn btn-primary">View Cars</a>
 						</td>
 					<td>

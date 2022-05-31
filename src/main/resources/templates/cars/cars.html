@@ -3,45 +3,43 @@
 <th:block th:include="fragments/head"></th:block>
 <link rel="stylesheet" th:href="@{/record.css}">
 <body>
-
 	<th:block th:include="fragments/navbar-affiliate"></th:block>
-
+	
 	<div class="container">
 		<h1 th:text="${serviceTravel.name}"></h1>
-		<h1>Menus:</h1>
+		<h1>Cars:</h1>
 		
-	 	<a th:href="@{/services/list}" class="btn btn-danger" >Back</a>
-	 	<a th:href="@{/menus/insert}" class="btn btn-primary">Add Menu</a>
+		<a href="#" class="btn btn-danger" >Back</a>
+	 	<a th:href="@{/cars/insert}" class="btn btn-primary">Add Car</a>
 	 	
 	 	<table class="table table-hover table-bordered">
-	 	
-			<thead class="table-dark">
+	 		
+	 		<thead class="table-dark">
 				<tr>
-					<th>Name of Menu</th>
-					<th>Type of Menu</th>
+					<th>Car Brand</th>
+					<th>Car Model</th>
+					<th>Number Of Seats</th>
+					<th>Price</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr th:each="menu:${menus}">
-					<td th:text="${menu.name}"></td>
-					<td th:text="${menu.menuType.name}"></td>
+				<tr th:each="car:${cars}">
+					<td th:text="${car.brandCar.name}"></td>
+					<td th:text="${car.modelCar.name}"></td>
+					<td th:text="${car.seatsQuantity}"></td>
+					<td th:text="${car.price}"></td>
 					<td>
-						<a th:href="@{/plates/list/{id}(id=${menu.id})}"
-						class="btn btn-primary">View Plates</a> 
-						<a th:href="@{/menus/edit/{id}(id=${menu.id})}"
+						<a href="#"
 						class="btn btn-primary">Edit</a> 
-						<a th:href="@{/menus/menus-delete/{id}(id=${menu.id})}"
+						<a href="#"
 						class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 			</tbody>
-			
-		</table>
+	 	</table>
 	</div>
-	
 	<th:block th:include="fragments/scripts"></th:block>
-	
 </body>
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	
+	<div class="container">
+		<h1 th:text="${menu.name}"></h1>
+		<h1>Plates:</h1>
+		
+		<a th:href="@{/menus/list/{id}(id=${menu.serviceTravel.id})}" class="btn btn-danger" >Back</a>
+	 	<a th:href="@{/plates/insert}" class="btn btn-primary">Add Plate</a>
+	 	
+	 	<table class="table table-hover table-bordered">
+	 		
+	 		<thead class="table-dark">
+				<tr>
+					<th>Name of Plate</th>
+					<th>Price of Menu</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="plate:${plates}">
+					<td th:text="${plate.name}"></td>
+					<td th:text="${plate.price}"></td>
+					<td>
+						<a th:href="@{/plates/edit/{id}(id=${plate.id})}"
+						class="btn btn-primary">Edit</a> 
+						<a th:href="@{/plates/plates-delete/{id}(id=${plate.id})}"
+						class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+	 	
+	 	</table>
+		
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

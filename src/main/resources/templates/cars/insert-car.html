@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	<div class="container">
+		<div class = "card">
+			<div class = "card-header"> New Car </div>
+			<div class = "card-body">
+				<form th:action="@{/cars/save}" 
+					  th:object="${car}" method="POST">
+					
+					<div class="mb-3">
+						<label for="CarBrand" class="form-label">Brand of Car</label>
+							<select id="CarBrand"
+								class="form-select"
+								th:field="${car.brandCar}"
+								name="brandCar">
+							<option th:each="brandCar:${brandCars}" th:value="${brandCar.id}"
+								th:text="${brandCar.name}" />
+						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label for="CarModel" class="form-label">Model of Car</label>
+							<select id="CarModel"
+								class="form-select"
+								th:field="${car.modelCar}"
+								name="modelCar"
+								onclick="onShowtimeChanged()">
+							<option th:each="modelCar:${modelCars}" th:value="${modelCar.id}"
+								th:text="${modelCar.name}" />
+						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label for="CarSeatsQuantity" class="form-label">Seats Quantity</label> 
+						<input id="CarSeatsQuantity"
+							class="form-control"
+							type="text" name="seatsQuantity"
+							th:field="*{seatsQuantity}" 
+							placeholder="Enter Seats Quantity" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="CarPrice" class="form-label">Price</label> 
+						<input id="CarPrice"
+							class="form-control"
+							type="text" name="price"
+							th:field="*{price}" 
+							placeholder="Enter Price" />
+					</div>
+					
+					<a th:href="@{/menus/back}" class="btn btn-danger">Back</a>
+					<button type="submit" class="btn btn-primary">Submit Car</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

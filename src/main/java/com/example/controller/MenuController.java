@@ -35,7 +35,7 @@ public class MenuController {
 	}
 
 	@GetMapping("/list/{id}")
-	public String home(@PathVariable Long id, Model model) {
+	public String listMenus(@PathVariable Long id, Model model) {
 		
 		serviceTravel = serviceTravelService.getServiceTravelById(id);
 		model.addAttribute("serviceTravel",serviceTravelService.getServiceTravelById(id));

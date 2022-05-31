@@ -30,7 +30,7 @@ public class ServiceTravelController {
 	}
 
 	@GetMapping("/list")
-	public String home(Model model) {
+	public String listServices(Model model) {
 		model.addAttribute("services", serviceTravelService.getAllServices());
 		return "services/services";
 	}

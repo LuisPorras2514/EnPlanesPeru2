@@ -10,7 +10,8 @@
 		<div class = "card-header"> Edit Menu </div>
 			<div class = "card-body">
 				
-				<form th:action="@{/menus/menus-edit/{id}(id=${menu.id})}" th:object="${menu}" method="POST">
+				<form th:action="@{/menus/menus-edit/{id}(id=${menu.id})}" 
+					th:object="${menu}" method="POST">
 					
 					<div class="mb-3">	
 						<label for="menuName" class="form-label">Services Name</label> 
@@ -32,7 +33,7 @@
 						</select>
 					</div>
 						
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-primary">Update Menu</button>
 					<a th:href="@{/menus/back}" class="btn btn-danger" >Back</a>
 					
 				</form>
