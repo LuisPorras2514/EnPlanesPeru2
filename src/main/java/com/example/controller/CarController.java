@@ -69,4 +69,36 @@ public class CarController {
 		return s;
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String editCarForm(@PathVariable Long id, Model model) {
+		Car car = carService.getCarById(id);
+		brandCars = brandCarService.getAllBrand();
+		modelCars = modelCarService.getAllModelCar();
+		model.addAttribute("car", car);
+		model.addAttribute("brandCars", brandCars);
+		model.addAttribute("modelCars", modelCars);
+		return "cars/edit-car";
+	}
+
+	@PostMapping("/cars-edit/{id}")
+	public String updateCar(@PathVariable Long id, @ModelAttribute("car") Car car, Model model) {
+		car.setServiceTravel(serviceTravel);
+		carService.updateCar(car);
+		String s = "redirect:/cars/list/" + serviceTravel.getId().toString();
+		return s;
+	}
+
+	@GetMapping("/cars-delete/{id}")
+	public String deleteCar(@PathVariable Long id) {
+		carService.deleteCar(id);
+		String s = "redirect:/cars/list/" + serviceTravel.getId().toString();
+		return s;
+	}
+	
+	@GetMapping("/back")
+	public String back(Model model) {
+		String s = "redirect:/cars/list/" + serviceTravel.getId().toString();
+		return s;
+	}
+	
 }

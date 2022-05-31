@@ -6,9 +6,9 @@
 	<th:block th:include="fragments/navbar-affiliate"></th:block>
 	<div class="container">
 		<div class = "card">
-			<div class = "card-header"> New Car </div>
+			<div class = "card-header"> Update Car </div>
 			<div class = "card-body">
-				<form th:action="@{/cars/save}" 
+				<form th:action="@{/cars/cars-edit/{id}(id=${car.id})}" 
 					  th:object="${car}" method="POST">
 					
 					<div class="mb-3">
