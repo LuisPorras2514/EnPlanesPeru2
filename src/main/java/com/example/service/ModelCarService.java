@@ -19,7 +19,7 @@ public class ModelCarService {
 		return modelCarRepository.findAll();
 	}
 	
-	public List<ModelCar> getAllModelCar(Long id) {
+	public List<ModelCar> getAllModelCarByBrand(Long id) {
 		return modelCarRepository.findAllByBrand(id);
 	}
 	

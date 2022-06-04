@@ -39,4 +39,8 @@ public class PlateService {
 		plateRepository.deleteById(id);
 	}
 	
+	public void deleteAllPlateByMenu(Long id) {
+		plateRepository.DeleteAllByMenu(id);
+	}
+	
 }

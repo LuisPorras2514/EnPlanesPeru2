@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.entities.BrandCar;
 import com.example.entities.Car;
@@ -21,6 +22,7 @@ import com.example.service.BrandCarService;
 import com.example.service.CarService;
 import com.example.service.ModelCarService;
 import com.example.service.ServiceTravelService;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/cars")
@@ -99,6 +101,13 @@ public class CarController {
 	public String back(Model model) {
 		String s = "redirect:/cars/list/" + serviceTravel.getId().toString();
 		return s;
+	}
+	
+	@ResponseBody
+	@GetMapping("/loadModelByBrand/{id}")
+	public String loadModelByBrand(@PathVariable("id") Long id) {
+		Gson gson = new Gson();
+		return gson.toJson(modelCarService.getAllModelCarByBrand(id));
 	}
 	
 }

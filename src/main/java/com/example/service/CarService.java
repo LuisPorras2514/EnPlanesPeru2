@@ -43,4 +43,8 @@ public class CarService {
 		carRepository.deleteById(id);
 	}
 	
+	public void deleteAllCarByService(Long id) {
+		carRepository.DeleteAllByService(id);
+	}
+	
 }

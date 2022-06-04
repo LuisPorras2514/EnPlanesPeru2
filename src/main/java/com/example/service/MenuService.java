@@ -42,5 +42,9 @@ public class MenuService {
 	public void deleteMenu(Long id) {
 		menuRepository.deleteById(id);
 	}
+	
+	public void deleteAllMenuByService(Long id) {
+		menuRepository.DeleteAllByService(id);
+	}
 
 }

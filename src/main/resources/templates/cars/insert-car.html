@@ -10,7 +10,7 @@
 			<div class = "card-body">
 				<form th:action="@{/cars/save}" 
 					  th:object="${car}" method="POST">
-					
+					  
 					<div class="mb-3">
 						<label for="CarBrand" class="form-label">Brand of Car</label>
 							<select id="CarBrand"
@@ -27,8 +27,7 @@
 							<select id="CarModel"
 								class="form-select"
 								th:field="${car.modelCar}"
-								name="modelCar"
-								onclick="onShowtimeChanged()">
+								name="modelCar">
 							<option th:each="modelCar:${modelCars}" th:value="${modelCar.id}"
 								th:text="${modelCar.name}" />
 						</select>
