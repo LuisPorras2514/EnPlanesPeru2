@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.entities.BrandCar;
 import com.example.entities.Car;
-import com.example.entities.Menu;
-import com.example.entities.MenuType;
 import com.example.entities.ModelCar;
 import com.example.entities.ServiceTravel;
 import com.example.service.BrandCarService;

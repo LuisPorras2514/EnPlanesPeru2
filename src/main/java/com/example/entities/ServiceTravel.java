@@ -10,80 +10,99 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="services_travel")
+@Table(name = "services_travel")
 public class ServiceTravel {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  @Column(name="service_name", nullable = false)
-  private String name;
-  @Column(name="address", nullable = false)
-  private String address;
-  @Column(name="star", nullable = false)
-  private int star;
-  @Column(name="province", nullable = false)
-  private String province;
-  @Column(name="deparment", nullable = false)
-  private String deparment;
-  
-  @ManyToOne
-  @JoinColumn(name="service_type_id", nullable = false)
-  private ServiceType serviceType;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "service_name", nullable = false)
+	private String name;
+	
+	@Column(name = "address", nullable = false)
+	private String address;
+	
+	@Column(name = "star", nullable = false)
+	private int star;
 
-  public Long getId() {
-    return id;
-  }
+	@ManyToOne
+	@JoinColumn(name = "country_id", nullable = false)
+	private Country country;
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	@ManyToOne
+	@JoinColumn(name = "department_id", nullable = false)
+	private Department department;
 
-  public String getName() {
-    return name;
-  }
+	@ManyToOne
+	@JoinColumn(name = "province_id", nullable = false)
+	private Province province;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	@ManyToOne
+	@JoinColumn(name = "service_type_id", nullable = false)
+	private ServiceType serviceType;
 
-  public String getAddress() {
-    return address;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int getStar() {
-    return star;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setStar(int star) {
-    this.star = star;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getProvince() {
-    return province;
-  }
+	public String getAddress() {
+		return address;
+	}
 
-  public void setProvince(String province) {
-    this.province = province;
-  }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-  public String getDeparment() {
-    return deparment;
-  }
+	public int getStar() {
+		return star;
+	}
 
-  public void setDeparment(String deparment) {
-    this.deparment = deparment;
-  }
+	public void setStar(int star) {
+		this.star = star;
+	}
 
-  public ServiceType getServiceType() {
-    return serviceType;
-  }
+	public Country getCountry() {
+		return country;
+	}
 
-  public void setServiceType(ServiceType serviceType) {
-    this.serviceType = serviceType;
-  }
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
+	public ServiceType getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(ServiceType serviceType) {
+		this.serviceType = serviceType;
+	}
 
 }

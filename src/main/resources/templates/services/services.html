@@ -14,6 +14,7 @@
 			<thead class="table-dark">
 				<tr>
 					<th>Name Services</th>
+					<th>Country</th>
 					<th>Department</th>
 					<th>Province</th>
 					<th>Address</th>
@@ -26,15 +27,16 @@
 			<tbody>
 				<tr th:each="serviceTravel:${services}">
 					<td th:text="${serviceTravel.name}"></td>
-					<td th:text="${serviceTravel.deparment}"></td>
-					<td th:text="${serviceTravel.province}"></td>
+					<td th:text="${serviceTravel.country.name}"></td>
+					<td th:text="${serviceTravel.department.name}"></td>
+					<td th:text="${serviceTravel.province.name}"></td>
 					<td th:text="${serviceTravel.address}"></td>
 					<td th:text="${serviceTravel.serviceType.name}"></td>
 					<td th:text="${serviceTravel.star}"></td>
 						<td th:switch="${serviceTravel.serviceType.name}">
 							<a th:case='Alimentación'th:href="@{/menus/list/{id}(id=${serviceTravel.id})}"
 							class="btn btn-primary">View Menus</a>
-							<a th:case='Alojamiento' href="#" 
+							<a th:case='Alojamiento' th:href="@{/rooms/list/{id}(id=${serviceTravel.id})}" 
 							class="btn btn-primary">View Rooms</a>
 							<a th:case='Movilidad' th:href="@{/cars/list/{id}(id=${serviceTravel.id})}"
 							class="btn btn-primary">View Cars</a>

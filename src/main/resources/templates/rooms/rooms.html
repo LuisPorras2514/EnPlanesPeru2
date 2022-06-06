@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	<div class="container">
+		<h1 th:text="${serviceTravel.name}"></h1>
+		<h1>Rooms</h1>
+		<a th:href="@{/services/list}" class="btn btn-danger" >Back</a>
+	 	<a th:href="@{/rooms/insert}" class="btn btn-primary">Add Room</a>
+	 	
+	 	<table class="table table-hover table-bordered">
+	 	
+			<thead class="table-dark">
+				<tr>
+					<th>Quantity Bed</th>
+					<th>Price Room</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="room:${rooms}">
+					<td th:text="${room.quantityBed}"></td>
+					<td th:text="${room.priceRoom}"></td>
+					<td>
+											
+						<a th:href="@{/rooms/edit/{id}(id=${room.id})}"
+						class="btn btn-primary">Edit</a> 
+						<a th:href="@{/rooms/rooms-delete/{id}(id=${room.id})}"
+						class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+			
+				</table>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

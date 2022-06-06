@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragments/head"></th:block>
 <link rel="stylesheet" th:href="@{/record.css}">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script th:src="@{/js/location.js}"></script>
 <body>
 	<th:block th:include="fragments/navbar-affiliate"></th:block>
 	
@@ -21,21 +23,35 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="deparment" class="form-label">Department</label> 
-						<input id="deparment"
+						<label for="countries" class="form-label">Country</label> 
+						<select id="countries" 
 							class="form-control"
-							type="text" name="deparment"
-							th:field="*{deparment}" 
-							placeholder="Enter Deparment" />
+							th:field="${serviceTravel.country}"
+							name="country">
+							<option value='-1'>Select Country</option>
+							<option th:each="country:${countries}" th:value="${country.id}"
+									th:text="${country.name}"/></option>
+						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label for="department" class="form-label">Department</label> 
+						<select id="department" 
+							class="form-control"
+							th:field="${serviceTravel.department}"
+							name="department">
+							<option value='-1'>Select Department</option>
+						</select>
 					</div>
 					
 					<div class="mb-3">
 						<label for="province" class="form-label">Province</label> 
-						<input id="province"
+						<select id="province" 
 							class="form-control"
-							type="text" name="province"
-							th:field="*{province}" 
-							placeholder="Enter Province" />
+							th:field="${serviceTravel.province}"
+							name="province">
+							<option value='-1'>Select Province</option>
+						</select>
 					</div>
 					
 					<div class="mb-3">
@@ -53,7 +69,7 @@
 								class="form-select"
 								th:field="${serviceTravel.serviceType}"
 								name="serviceTypes">
-
+							<option value='-1'>Select Type of Service</option>
 							<option th:each="serviceType:${serviceTypes}" th:value="${serviceType.id}"
 								th:text="${serviceType.name}" />
 						</select>

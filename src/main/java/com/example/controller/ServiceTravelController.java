@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,35 +11,44 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.entities.Menu;
 import com.example.entities.ServiceTravel;
 import com.example.entities.ServiceType;
 import com.example.service.CarService;
+import com.example.service.CountryService;
+import com.example.service.DepartmentService;
 import com.example.service.MenuService;
 import com.example.service.PlateService;
+import com.example.service.ProvinceService;
 import com.example.service.ServiceTravelService;
 import com.example.service.ServiceTypeService;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/services")
 public class ServiceTravelController {
+	
+	@Autowired
 	private ServiceTravelService serviceTravelService;
+	@Autowired
 	private MenuService menuService;
+	@Autowired
 	private PlateService plateService;
+	@Autowired
 	private CarService carService;
+	@Autowired
 	private ServiceTypeService serviceTypeService;
+	@Autowired
+	private CountryService countryService;
+	@Autowired
+	private DepartmentService departmentService;
+	@Autowired
+	private ProvinceService provinceService;
 
 	private List<ServiceType> serviceTypes = new ArrayList<>();
-
-	public ServiceTravelController(ServiceTravelService serviceTravelService, ServiceTypeService serviceTypeService,
-			MenuService menuService, PlateService plateService, CarService carService) {
-		this.serviceTravelService = serviceTravelService;
-		this.serviceTypeService = serviceTypeService;
-		this.menuService = menuService;
-		this.plateService = plateService;
-		this.carService = carService;
-	}
 
 	@GetMapping("/list")
 	public String listServices(Model model) {
@@ -53,7 +63,8 @@ public class ServiceTravelController {
 
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
-
+		model.addAttribute("countries",countryService.getAllCountry())	;
+		
 		return "services/insert-service";
 	}
 
@@ -82,10 +93,12 @@ public class ServiceTravelController {
 
 		existentServiceTravel.setId(id);
 		existentServiceTravel.setName(serviceTravel.getName());
-		existentServiceTravel.setDeparment(serviceTravel.getDeparment());
-		existentServiceTravel.setProvince(serviceTravel.getProvince());
 		existentServiceTravel.setAddress(serviceTravel.getAddress());
 		existentServiceTravel.setStar(serviceTravel.getStar());
+		existentServiceTravel.setCountry(serviceTravel.getCountry());
+		existentServiceTravel.setDepartment(serviceTravel.getDepartment());
+		existentServiceTravel.setProvince(serviceTravel.getProvince());
+		existentServiceTravel.setServiceType(serviceTravel.getServiceType());
 
 		serviceTravelService.updateServiceTravel(existentServiceTravel);
 
@@ -111,6 +124,20 @@ public class ServiceTravelController {
 
 		serviceTravelService.deleteServiceTravel(id);
 		return "redirect:/services/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "loadDeparmentByCountry/{id}", method = RequestMethod.GET)
+	public String loadStatesByCountry(@PathVariable("id") Long id) {
+		Gson gson = new Gson();
+		return gson.toJson(departmentService.getAllDeparmentByCountry(id));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "loadProvinceByDeparment/{id}", method = RequestMethod.GET)
+	public String loadCitiesByState(@PathVariable("id") Long id) {
+		Gson gson = new Gson();
+		return gson.toJson(provinceService.getAllProvinceByDeparment(id));
 	}
 
 }
