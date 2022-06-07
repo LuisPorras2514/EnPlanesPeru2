@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("/services")
 public class ServiceTravelController {
-	
+
 	@Autowired
 	private ServiceTravelService serviceTravelService;
 	@Autowired
@@ -60,11 +60,9 @@ public class ServiceTravelController {
 	public String createServiceForm(Model model) {
 		ServiceTravel serviceTravel = new ServiceTravel();
 		serviceTypes = serviceTypeService.getAllServiceTypes();
-
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
-		model.addAttribute("countries",countryService.getAllCountry())	;
-		
+		model.addAttribute("countries", countryService.getAllCountry());
 		return "services/insert-service";
 	}
 
@@ -78,19 +76,19 @@ public class ServiceTravelController {
 	@GetMapping("/edit/{id}")
 	public String editServicesTravelForm(@PathVariable Long id, Model model) {
 		ServiceTravel serviceTravel = serviceTravelService.getServiceTravelById(id);
-
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
-
+		model.addAttribute("countries", countryService.getAllCountry());
+		model.addAttribute("departments", departmentService.getAllDeparmentByCountry(serviceTravel.getCountry().getId()));
+		model.addAttribute("provinces", provinceService.getAllProvinceByDeparment(serviceTravel.getDepartment().getId()));
+		model.addAttribute("serviceTypes",serviceTravel.getServiceType());
 		return "services/edit-service";
 	}
 
 	@PostMapping("/services-edit/{id}")
 	public String updateServicesTravel(@PathVariable Long id,
 			@ModelAttribute("serviceTravel") ServiceTravel serviceTravel, Model model) {
-
 		ServiceTravel existentServiceTravel = serviceTravelService.getServiceTravelById(id);
-
 		existentServiceTravel.setId(id);
 		existentServiceTravel.setName(serviceTravel.getName());
 		existentServiceTravel.setAddress(serviceTravel.getAddress());
@@ -99,18 +97,14 @@ public class ServiceTravelController {
 		existentServiceTravel.setDepartment(serviceTravel.getDepartment());
 		existentServiceTravel.setProvince(serviceTravel.getProvince());
 		existentServiceTravel.setServiceType(serviceTravel.getServiceType());
-
 		serviceTravelService.updateServiceTravel(existentServiceTravel);
-
 		return "redirect:/services/list";
 	}
 
 	@GetMapping("/services-delete/{id}")
 	public String deleteServiceTravel(@PathVariable Long id) {
 		ServiceTravel serviceTravel = serviceTravelService.getServiceTravelById(id);
-
 		if (serviceTravel.getServiceType().getId() == 1) {
-
 		} else if (serviceTravel.getServiceType().getId() == 2) {
 			List<Menu> menus = new ArrayList<>();
 			menus = menuService.getAllMenuByServices(id);
@@ -121,18 +115,17 @@ public class ServiceTravelController {
 		} else if (serviceTravel.getServiceType().getId() == 3) {
 			carService.deleteAllCarByService(id);
 		}
-
 		serviceTravelService.deleteServiceTravel(id);
 		return "redirect:/services/list";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "loadDeparmentByCountry/{id}", method = RequestMethod.GET)
 	public String loadStatesByCountry(@PathVariable("id") Long id) {
 		Gson gson = new Gson();
 		return gson.toJson(departmentService.getAllDeparmentByCountry(id));
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "loadProvinceByDeparment/{id}", method = RequestMethod.GET)
 	public String loadCitiesByState(@PathVariable("id") Long id) {
