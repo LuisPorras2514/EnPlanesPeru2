@@ -9,23 +9,21 @@
 		<h1>Rooms</h1>
 		<a th:href="@{/services/list}" class="btn btn-danger" >Back</a>
 	 	<a th:href="@{/rooms/insert}" class="btn btn-primary">Add Room</a>
-	 	
 	 	<table class="table table-hover table-bordered">
-	 	
 			<thead class="table-dark">
 				<tr>
-					<th>Quantity Bed</th>
+					<th>Quantity of Bed</th>
+					<th>Quantity of Person</th>
 					<th>Price Room</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
-			
 			<tbody>
 				<tr th:each="room:${rooms}">
 					<td th:text="${room.quantityBed}"></td>
+					<td th:text="${room.quantityPerson}"></td>
 					<td th:text="${room.priceRoom}"></td>
-					<td>
-											
+					<td>					
 						<a th:href="@{/rooms/edit/{id}(id=${room.id})}"
 						class="btn btn-primary">Edit</a> 
 						<a th:href="@{/rooms/rooms-delete/{id}(id=${room.id})}"
@@ -33,10 +31,8 @@
 					</td>
 				</tr>
 			</tbody>
-			
-				</table>
+		</table>
 	</div>
-	
 	<th:block th:include="fragments/scripts"></th:block>
 </body>
 </html>

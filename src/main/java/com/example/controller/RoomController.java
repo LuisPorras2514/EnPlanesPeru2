@@ -61,6 +61,7 @@ public class RoomController {
 		Room existentRoom = roomService.getRoomById(id);
 		existentRoom.setId(id);
 		existentRoom.setQuantityBed(room.getQuantityBed());
+		existentRoom.setQuantityPerson(room.getQuantityPerson());
 		existentRoom.setPriceRoom(room.getPriceRoom());
 		roomService.updateRoom(existentRoom);
 		String s = "redirect:/rooms/list/" + serviceTravel.getId().toString();

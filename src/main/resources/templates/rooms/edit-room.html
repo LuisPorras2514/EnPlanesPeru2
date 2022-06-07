@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	<div class="container">
+		<div class = "card">
+		<div class = "card-header"> Edit Room </div>
+			<div class = "card-body">
+				
+				<form th:action="@{/rooms/rooms-edit/{id}(id=${room.id})}" th:object="${room}" method="POST">
+					
+					<div class="mb-3">	
+						<label for="quantityBed" class="form-label">Quantity Bed</label> 
+						<input id="quantityBed"
+							class="form-control" 
+							type="text" name="quantityBed"
+							th:field="*{quantityBed}" 
+							placeholder="Enter Quantity Bed" />
+					</div>
+					
+					<div class="mb-3">	
+						<label for="quantityPerson" class="form-label">Quantity Person</label> 
+						<input id="quantityPerson"
+							class="form-control" 
+							type="text" name="quantityPerson"
+							th:field="*{quantityPerson}" 
+							placeholder="Enter Quantity Person" />
+					</div>
+					
+					<div class="mb-3">	
+						<label for="priceRoom" class="form-label">Price Room</label> 
+						<input id="priceRoom"
+							class="form-control" 
+							type="text" name="priceRoom"
+							th:field="*{priceRoom}" 
+							placeholder="Enter Price Room" />
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<a th:href="@{/rooms/back}" class="btn btn-danger" >Back</a>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+					
+					
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>

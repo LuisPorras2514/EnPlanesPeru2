@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<link rel="stylesheet" th:href="@{/record.css}">
+<body>
+	<th:block th:include="fragments/navbar-affiliate"></th:block>
+	<div class="container">
+		<div class = "card">
+			<div class = "card-header"> New Menu </div>
+			<div class = "card-body">
+				<form th:action="@{/rooms/save}" 
+					  th:object="${room}" method="POST">
+					
+					<div class="mb-3">
+						<label for="quantityBed" class="form-label">Quantity Bed</label> 
+						<input id="quantityBed"
+							class="form-control"
+							type="text" name="quantityBed"
+							th:field="*{quantityBed}" 
+							placeholder="Enter Quantity Bed" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="quantityPerson" class="form-label">Quantity People</label> 
+						<input id="quantityPerson"
+							class="form-control"
+							type="text" name="quantityPerson"
+							th:field="*{quantityPerson}" 
+							placeholder="Enter Quantity Person" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="roomPrice" class="form-label">Room Price</label> 
+						<input id="roomPrice"
+							class="form-control"
+							type="text" name="priceRoom"
+							th:field="*{priceRoom}" 
+							placeholder="Enter Room Price" />
+					</div>
+					
+					<a th:href="@{/rooms/back}" class="btn btn-danger">Back</a>
+					<button type="submit" class="btn btn-primary">Submit Room</button>
+					</form>
+				</div>
+		  </div>
+	</div>
+	
+	<th:block th:include="fragments/scripts"></th:block>
+</body>
+</html>
