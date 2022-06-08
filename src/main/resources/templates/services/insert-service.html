@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragments/head"></th:block>
-<link rel="stylesheet" th:href="@{/record.css}">
+<link rel="stylesheet" th:href="@{/css/record.css}">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script th:src="@{/js/location.js}"></script>
 <body>
@@ -11,7 +11,7 @@
 		<div class = "card">
 			<div class = "card-header"> New Services </div>
 			<div class = "card-body">
-				<form th:action="@{/services/save}" th:object="${serviceTravel}" method="POST">
+				<form th:action="@{/services/save}" th:object="${serviceTravel}" method="POST" enctype="multipart/form-data">
 					
 					<div class="mb-3">
 						<label for="serviceName" class="form-label">Services Name</label> 
@@ -73,6 +73,11 @@
 							<option th:each="serviceType:${serviceTypes}" th:value="${serviceType.id}"
 								th:text="${serviceType.name}" />
 						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label for="file" class="form-label">Photo:</label> 
+						<input type="file" class="form-control" id="file" name="file">
 					</div>
 					
 					<a th:href="@{/services/list}" class="btn btn-danger" >Back</a>

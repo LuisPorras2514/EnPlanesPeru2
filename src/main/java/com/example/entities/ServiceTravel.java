@@ -24,6 +24,9 @@ public class ServiceTravel {
 	
 	@Column(name = "star", nullable = false)
 	private int star;
+	
+	@Column(name = "photo")
+	private String photo;
 
 	@ManyToOne
 	@JoinColumn(name = "country_id", nullable = false)
@@ -71,6 +74,14 @@ public class ServiceTravel {
 
 	public void setStar(int star) {
 		this.star = star;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public Country getCountry() {

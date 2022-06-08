@@ -1,6 +1,11 @@
 package com.example.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.entities.Menu;
 import com.example.entities.ServiceTravel;
@@ -67,7 +74,24 @@ public class ServiceTravelController {
 	}
 
 	@PostMapping("/save")
-	public String saveStudent(@ModelAttribute("serviceTravel") ServiceTravel serviceTravel) {
+	public String saveStudent(@ModelAttribute("serviceTravel") ServiceTravel serviceTravel,
+			@RequestParam("file") MultipartFile file) {
+		
+		String road="D://Workplace/demo-EnPlanesPeru/src/main/resources/static/imagen/img-services";
+		String url = "";
+		String namePhoto = "";
+		int index = file.getOriginalFilename().indexOf(".");
+		url= "." + file.getOriginalFilename().substring(index+1);
+		namePhoto = Calendar.getInstance().getTimeInMillis() + url;
+		Path roadFinal = Paths.get(road+"//"+namePhoto);
+		
+		try {
+			Files.write(roadFinal,file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		serviceTravel.setPhoto(namePhoto);
 		serviceTravel.setStar(0);
 		serviceTravelService.saveServiceTravel(serviceTravel);
 		return "redirect:/services/list";
@@ -79,15 +103,18 @@ public class ServiceTravelController {
 		model.addAttribute("serviceTravel", serviceTravel);
 		model.addAttribute("serviceTypes", serviceTypes);
 		model.addAttribute("countries", countryService.getAllCountry());
-		model.addAttribute("departments", departmentService.getAllDeparmentByCountry(serviceTravel.getCountry().getId()));
-		model.addAttribute("provinces", provinceService.getAllProvinceByDeparment(serviceTravel.getDepartment().getId()));
-		model.addAttribute("serviceTypes",serviceTravel.getServiceType());
+		model.addAttribute("departments",
+				departmentService.getAllDeparmentByCountry(serviceTravel.getCountry().getId()));
+		model.addAttribute("provinces",
+				provinceService.getAllProvinceByDeparment(serviceTravel.getDepartment().getId()));
+		model.addAttribute("serviceTypes", serviceTravel.getServiceType());
 		return "services/edit-service";
 	}
 
 	@PostMapping("/services-edit/{id}")
 	public String updateServicesTravel(@PathVariable Long id,
-			@ModelAttribute("serviceTravel") ServiceTravel serviceTravel, Model model) {
+			@ModelAttribute("serviceTravel") ServiceTravel serviceTravel, Model model,
+			@RequestParam("file") MultipartFile file) {
 		ServiceTravel existentServiceTravel = serviceTravelService.getServiceTravelById(id);
 		existentServiceTravel.setId(id);
 		existentServiceTravel.setName(serviceTravel.getName());
@@ -97,6 +124,18 @@ public class ServiceTravelController {
 		existentServiceTravel.setDepartment(serviceTravel.getDepartment());
 		existentServiceTravel.setProvince(serviceTravel.getProvince());
 		existentServiceTravel.setServiceType(serviceTravel.getServiceType());
+		
+		String road="D://Workplace/demo-EnPlanesPeru/src/main/resources/static/imagen/img-services";
+		Path roadFinal = Paths.get(road+"//"+existentServiceTravel.getPhoto());
+		
+		try {
+			if(!file.isEmpty()) {
+				Files.write(roadFinal,file.getBytes());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		serviceTravelService.updateServiceTravel(existentServiceTravel);
 		return "redirect:/services/list";
 	}
