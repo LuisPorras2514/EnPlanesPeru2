@@ -4,9 +4,89 @@ body{
     font-size: 18px;
     padding: 0;
     margin: 0;
+    min-height: 100vh;
+    min-width: 100vh;
 }
 
 .slide {
 	height:700px;
 	width:100%;
 }
+
+/*NAVBAR*/
+
+.navbar-red {
+	width: 90%;	
+	border-radius: 20px;
+	margin: 5% auto;
+	padding-left:10%;
+	margin-top: 20px;
+	position: fixed;
+	display: flex;
+}
+
+.nav-item {
+	background-image: linear-gradient(to right, white 50%, #CD332B 50%);
+	background-size: 200%;
+	background-repeat: no-repeat;
+	background-position: right;
+	transition: background-position .5s ease;
+}
+
+.nav-item:hover {
+	background-position: left;
+}
+
+.nav-link {
+	color: white !important;
+	transition: color .5s ease;
+}
+
+.nav-link:hover {
+	color: black !important;
+}
+
+.nav-item-first {
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+
+.nav-item-last {
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.container {
+	text-align: center;
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+
+/*CARDS*/
+
+.card-title {
+	background-color: black;
+	height: 30px;
+	width: 100%;
+	text-align: center;
+	color: white;
+	line-height: 30px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.btn-danger {
+	height: 30px;
+	width: 100%;
+	line-height: 15px;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.row {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
